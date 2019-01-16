@@ -5,27 +5,43 @@
  */
 package Indexpkg;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import java.awt.Rectangle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Andri
  */
 public class DaftarSiswa extends javax.swing.JFrame {
-
+    public static int statusSearching=0;
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
+    String a,b,c,d,e,f;
+    
     
     public DaftarSiswa() {
         initComponents();
         datatabel();
-        tempnis.setVisible(false);
+        hil(false);
+    }
+    
+    void hil(Boolean q){
+        tmpnis.setVisible(q);
+        tmpnama.setVisible(q);
+        tmpayah.setVisible(q);
+        tmpibu.setVisible(q);
+        tmphp.setVisible(q);
+        tmptgl.setVisible(q);
     }
     
     public void datatabel(){
@@ -51,6 +67,31 @@ public class DaftarSiswa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error");
         }
     }
+    
+    
+    private void Nyari(){
+        tabmode = (DefaultTableModel) jTable1.getModel();
+        String search = jTextField1.getText();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tabmode);
+        jTable1.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }
+    
+    public void kirimdata(){
+        int bar = jTable1.getSelectedRow();
+        a = tabmode.getValueAt(bar, 0).toString();
+        b = tabmode.getValueAt(bar, 1).toString();
+        c = tabmode.getValueAt(bar, 2).toString();
+        d = tabmode.getValueAt(bar, 3).toString();
+        e = tabmode.getValueAt(bar, 4).toString();
+        f = tabmode.getValueAt(bar, 5).toString();
+        
+        tmpnis.setText(a);
+        tmpnama.setText(b);
+        
+        System.err.println("Nis = "+a);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,11 +106,18 @@ public class DaftarSiswa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        cari = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tempnis = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tmpnis = new javax.swing.JLabel();
+        tmpnama = new javax.swing.JLabel();
+        tmptgl = new javax.swing.JLabel();
+        tmpayah = new javax.swing.JLabel();
+        tmpibu = new javax.swing.JLabel();
+        tmphp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -102,10 +150,19 @@ public class DaftarSiswa extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(0, 115, 130));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Cari");
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Search_30px.png"))); // NOI18N
+        cari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Search_30px.png"))); // NOI18N
+        cari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cariMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(64, 224, 208));
@@ -131,9 +188,21 @@ public class DaftarSiswa extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(64, 224, 208));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Erase_30px.png"))); // NOI18N
         jLabel4.setText("Hapus");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei Light", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(64, 224, 208));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Edit_30px.png"))); // NOI18N
+        jLabel5.setText("Edit");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
             }
         });
 
@@ -146,14 +215,29 @@ public class DaftarSiswa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(tmpnis)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tmpnama)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tmptgl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tmpayah)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tmpibu)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tmphp)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
-                                .addGap(309, 309, 309)
-                                .addComponent(jLabel2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel5)
+                                .addGap(262, 262, 262)
+                                .addComponent(jLabel2)))
                         .addGap(65, 65, 65))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(cari)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91)
@@ -169,16 +253,27 @@ public class DaftarSiswa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+                        .addComponent(cari)
                         .addComponent(jLabel3)
                         .addComponent(tempnis)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(26, 26, 26))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(tmpnis)
+                            .addComponent(tmpnama)
+                            .addComponent(tmptgl)
+                            .addComponent(tmpayah)
+                            .addComponent(tmpibu)
+                            .addComponent(tmphp))))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,9 +284,7 @@ public class DaftarSiswa extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -213,7 +306,7 @@ public class DaftarSiswa extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         int ok = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menghapus data", "Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
         if(ok==0){
-            String sql = "DELETE FROM daftarsiswa WHERE nis='"+tempnis.getText()+"'";
+            String sql = "DELETE FROM daftarsiswa WHERE nis='"+tmpnis.getText()+"'";
             try {
                 PreparedStatement stat = conn.prepareStatement(sql);
                 stat.executeUpdate();
@@ -226,10 +319,26 @@ public class DaftarSiswa extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int bar = jTable1.getSelectedRow();
-        String a = tabmode.getValueAt(bar, 0).toString();
-        tempnis.setText(a);
+        kirimdata();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariMouseClicked
+        Nyari();
+
+    }//GEN-LAST:event_cariMouseClicked
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        Nyari();
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        if(tempnis.getText().isEmpty() && tmpnama.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Silahkan Pilih Siswa terlebih dahulu","Warning", JOptionPane.ERROR_MESSAGE);
+        }
+        editSiswa as = new editSiswa(a,b,c,d,e,f);
+        as.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -267,14 +376,21 @@ public class DaftarSiswa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel cari;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel tempnis;
+    private javax.swing.JLabel tmpayah;
+    private javax.swing.JLabel tmphp;
+    private javax.swing.JLabel tmpibu;
+    private javax.swing.JLabel tmpnama;
+    private javax.swing.JLabel tmpnis;
+    private javax.swing.JLabel tmptgl;
     // End of variables declaration//GEN-END:variables
 }

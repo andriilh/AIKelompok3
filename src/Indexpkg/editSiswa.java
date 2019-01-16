@@ -18,24 +18,29 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Andri
  */
-public class TambahSiswa extends javax.swing.JFrame {
+public class editSiswa extends javax.swing.JFrame {
 
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
     char type;
+    String a,b,c,d,e,f;
     
-    public TambahSiswa() {
+    public editSiswa() {
         initComponents();
         
-        jid.setVisible(false);
-        jnama.setEditable(false);
-        jtgl.setEditable(false);
-        jayah.setEditable(false);
-        jibu.setEditable(false);
-        jhp.setEditable(false);
     }
     
-   
+   public editSiswa(String a,String b,String c,String d,String e,String f) {
+        initComponents();
+        
+        jnis.setText(a);
+        jnama.setText(b);
+        jtgl.setText(c);
+        jayah.setText(d);
+        jibu.setText(e);
+        jhp.setText(f);
+        jid.setVisible(false);
+    }
     
     private void kosong(){
         jnis.requestFocus();
@@ -46,7 +51,8 @@ public class TambahSiswa extends javax.swing.JFrame {
         jibu.setText(null);
         jhp.setText(null);
     }
-
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -167,7 +173,7 @@ public class TambahSiswa extends javax.swing.JFrame {
 
         simpan.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
         simpan.setForeground(new java.awt.Color(64, 224, 208));
-        simpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Save_Archive_30px.png"))); // NOI18N
+        simpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8_Update_30px.png"))); // NOI18N
         simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         simpan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -332,7 +338,7 @@ public class TambahSiswa extends javax.swing.JFrame {
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
         int id = 0;
-        String sql = "INSERT INTO daftarSiswa values(?,?,?,?,?,?)";
+        String sql = "UPDATE daftarsiswa SET nis=?, nama=?, tgl_lahir=?, ayah=?, ibu=?, telepon=? WHERE nis='"+jnis.getText()+"'";
         
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
@@ -388,13 +394,6 @@ public class TambahSiswa extends javax.swing.JFrame {
         
         if(jnis.getText().length() >= 10){
             evt.consume();
-        }
-        if(jnis.getText().length() < 10){
-        jnama.setEditable(true);
-        jtgl.setEditable(true);
-        jayah.setEditable(true);
-        jibu.setEditable(true);
-        jhp.setEditable(true);
         }
         hanyaAngka(evt);
     }//GEN-LAST:event_jnisKeyTyped
@@ -455,20 +454,21 @@ public class TambahSiswa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TambahSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TambahSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TambahSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TambahSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(editSiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TambahSiswa().setVisible(true);
+                new editSiswa().setVisible(true);
             }
         });
     }
