@@ -39,9 +39,9 @@ public class About extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLayeredPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLayeredPane1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLayeredPane1KeyPressed(evt);
+        jLayeredPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLayeredPane1MouseClicked(evt);
             }
         });
 
@@ -94,14 +94,14 @@ public class About extends javax.swing.JFrame {
         jLabel9.setText(null);
     }//GEN-LAST:event_jLabel9MouseExited
 
-    private void jLayeredPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLayeredPane1KeyPressed
+    private void jLayeredPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLayeredPane1MouseClicked
         String url="https://www.instagram.com/andriilh/";
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(About.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jLayeredPane1KeyPressed
+    }//GEN-LAST:event_jLayeredPane1MouseClicked
 
     /**
      * @param args the command line arguments

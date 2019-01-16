@@ -139,7 +139,7 @@
                       </Group>
                       <Component id="jbin" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="simpan" min="-2" max="-2" attributes="0"/>
                       <Component id="simpan1" min="-2" max="-2" attributes="0"/>
@@ -401,14 +401,8 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jm">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel7"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="rt">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel8"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

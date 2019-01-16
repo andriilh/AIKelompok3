@@ -52,8 +52,6 @@ public class InputNilai extends javax.swing.JFrame {
         rata = jlh/3;
         rt.setText(String.valueOf(rata));
         
-        System.out.println("jumlah = "+jlh);
-        System.err.println("rata = "+rata);
     }
 
     /**
@@ -210,10 +208,6 @@ public class InputNilai extends javax.swing.JFrame {
             }
         });
 
-        jm.setText("jLabel7");
-
-        rt.setText("jLabel8");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -293,7 +287,7 @@ public class InputNilai extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel6))
                     .addComponent(jbin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(simpan)
                     .addComponent(simpan1)
