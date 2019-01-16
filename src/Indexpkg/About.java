@@ -31,6 +31,7 @@ public class About extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -57,6 +58,25 @@ public class About extends javax.swing.JFrame {
         );
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 160, 50));
+
+        jLayeredPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLayeredPane2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 160, 40));
 
         jLabel9.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(64, 224, 208));
@@ -103,6 +123,15 @@ public class About extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLayeredPane1MouseClicked
 
+    private void jLayeredPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLayeredPane2MouseClicked
+        String url="https://www.instagram.com/dendi_herdiansyah/";
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(About.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLayeredPane2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -142,5 +171,6 @@ public class About extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     // End of variables declaration//GEN-END:variables
 }

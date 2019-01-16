@@ -47,6 +47,7 @@ public class editNilai extends javax.swing.JFrame {
         jipa.setText(null);
         jbin.setText(null);
     }
+    
     public void hitung(){
         mtk = Integer.parseInt(jmtk.getText());
         ipa = Integer.parseInt(jipa.getText());
@@ -55,9 +56,6 @@ public class editNilai extends javax.swing.JFrame {
         jm.setText(String.valueOf(jlh));
         rata = jlh/3;
         rt.setText(String.valueOf(rata));
-        
-        System.out.println("jumlah = "+jlh);
-        System.err.println("rata = "+rata);
     }
     
     
@@ -144,11 +142,6 @@ public class editNilai extends javax.swing.JFrame {
         jipa.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jipa.setForeground(new java.awt.Color(0, 255, 255));
         jipa.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 255, 255)));
-        jipa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jipaActionPerformed(evt);
-            }
-        });
         jipa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jipaKeyTyped(evt);
@@ -332,10 +325,6 @@ public class editNilai extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jipaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jipaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jipaActionPerformed
-
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
         hitung();
         int id = 0;
@@ -384,7 +373,7 @@ public class editNilai extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseExited
 
     private void simpan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan1MouseClicked
-        // TODO add your handling code here:
+        kosong();
     }//GEN-LAST:event_simpan1MouseClicked
 
     private void simpan1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan1MouseEntered
@@ -396,7 +385,6 @@ public class editNilai extends javax.swing.JFrame {
     }//GEN-LAST:event_simpan1MouseExited
 
     private void jmtkKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmtkKeyTyped
-       
         type = evt.getKeyChar();
         if(Character.isAlphabetic(type)){
             evt.consume();
