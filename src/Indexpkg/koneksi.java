@@ -36,14 +36,14 @@ public class koneksi {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Berhasil Koneksi");
         } catch (ClassNotFoundException ex) {
-            System.out.println("Gagal Koneksi "+ex);
+            System.err.println("Gagal Koneksi "+ex);
         }
         String url = "jdbc:mysql://localhost/infonilai";
         try {
             koneksi = DriverManager.getConnection(url, "root", "");
             System.out.println("Berhasil Koneksi Database");
         } catch (SQLException ex) {
-            System.out.println("Gagal Koneksi Database "+ex);
+            System.err.println("Gagal Koneksi Database "+ex);
         }
         return koneksi;
     }
