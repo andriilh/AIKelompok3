@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +28,6 @@ public class TambahSiswa extends javax.swing.JFrame {
     public TambahSiswa() {
         initComponents();
         
-        jid.setVisible(false);
         jnama.setEditable(false);
         jtgl.setEditable(false);
         jayah.setEditable(false);
@@ -46,6 +46,8 @@ public class TambahSiswa extends javax.swing.JFrame {
         jibu.setText(null);
         jhp.setText(null);
     }
+    
+    
 
     
     @SuppressWarnings("unchecked")
@@ -69,7 +71,6 @@ public class TambahSiswa extends javax.swing.JFrame {
         simpan = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         simpan1 = new javax.swing.JLabel();
-        jid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -256,9 +257,6 @@ public class TambahSiswa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jayah, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jibu, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jid, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,14 +299,12 @@ public class TambahSiswa extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(jLabel7))
                     .addComponent(jhp, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(simpan)
                     .addComponent(jLabel9)
                     .addComponent(simpan1))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -486,7 +482,6 @@ public class TambahSiswa extends javax.swing.JFrame {
     private javax.swing.JTextField jayah;
     private javax.swing.JTextField jhp;
     private javax.swing.JTextField jibu;
-    private javax.swing.JTextField jid;
     private javax.swing.JTextField jnama;
     private javax.swing.JTextField jnis;
     private javax.swing.JTextField jtgl;
