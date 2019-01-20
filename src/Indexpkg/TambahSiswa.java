@@ -47,9 +47,6 @@ public class TambahSiswa extends javax.swing.JFrame {
         jhp.setText(null);
     }
     
-    
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -386,11 +383,11 @@ public class TambahSiswa extends javax.swing.JFrame {
             evt.consume();
         }
         if(jnis.getText().length() < 10){
-        jnama.setEditable(true);
-        jtgl.setEditable(true);
-        jayah.setEditable(true);
-        jibu.setEditable(true);
-        jhp.setEditable(true);
+            jnama.setEditable(true);
+            jtgl.setEditable(true);
+            jayah.setEditable(true);
+            jibu.setEditable(true);
+            jhp.setEditable(true);
         }
         hanyaAngka(evt);
     }//GEN-LAST:event_jnisKeyTyped
